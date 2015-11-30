@@ -71,6 +71,10 @@ section{
             right:0;
             padding: 16px;
             
+            p{
+                color:rgba(white, .6);
+                display: inline;
+            }
             a{
                 &,&:visited,&:hover,&:active{
                     color:white;
@@ -91,7 +95,9 @@ section{
             background-color: rgba(black, .6);
             width: calc(100% - 32px);
             padding: 16px;
-             
+            
+            &.bgRed{background-color: rgba(darkred, .6);}
+            
             p{display:inline-block; color:white;}
             
             a{
@@ -146,4 +152,48 @@ section{
 .embededMap {
     border:0;
     height: 50vh;
+}
+
+.event{
+    margin: 16px 0;
+    display: block;
+    position: relative;
+    border:1px solid rgba(black, .15);
+    
+    .event_header {
+        $eHeadPad:16px;       
+        width:calc(100% - (#{$eHeadPad}*2));
+        background-color: rgba(black, .08);
+        padding: $eHeadPad;
+        display: inline-block;
+        font-size: 1.2em;
+        
+        .event_title{display: inline;}
+        .event_date_day{display: inline;float: right}
+    }
+    .event_body{
+        $eBodPad:16px;       
+        width:calc(100% - (#{$eBodPad}*2));
+        padding: $eBodPad;
+        display: inline-block;
+    }
+    .event_footer{
+        $eFootPad:16px;       
+        width:calc(100% - (#{$eFootPad}*2));
+        padding: $eFootPad;
+        display: inline-block;
+        font-size: .9em;
+        .event_creator{display:inline-block;}
+        .event_editor{
+            display:inline-block;
+            float:right;
+            a{
+                margin-left:8px;
+                &,&:visited,&:hover,&:active{
+                    text-decoration: none;
+                    color:rgba(black, .87);
+                }
+            }
+        }
+    }
 }

@@ -5,6 +5,8 @@
  */
 package controllers;
 
+import business.Event;
+import data.EventDB;
 import java.awt.image.BufferedImage;
 import java.io.*;
 import java.io.IOException;
@@ -14,6 +16,7 @@ import java.net.Socket;
 import java.net.SocketTimeoutException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -48,6 +51,8 @@ public class pages extends HttpServlet {
         ArrayList<String> pictures = getPictures();
         ArrayList<String> pictureThumbs = getPictureThumbs(pictures);
         
+        List<Event> events = EventDB.reverseEvents();
+        
         session = request.getSession();
         session.setAttribute("ip", ip);
         session.setAttribute("online", online);
@@ -63,6 +68,7 @@ public class pages extends HttpServlet {
             url = "/pictures.jsp";
         } 
         
+        session.setAttribute("events", events);
         getServletContext()
                 .getRequestDispatcher(url)
                 .forward(request, response);

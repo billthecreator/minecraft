@@ -4,9 +4,17 @@
         <servlet-name>pages</servlet-name>
         <servlet-class>controllers.pages</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>administrators</servlet-name>
+        <servlet-class>controllers.administrators</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>pages</servlet-name>
         <url-pattern>/pages/*</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>administrators</servlet-name>
+        <url-pattern>/administrators/*</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
@@ -14,7 +22,35 @@
         </session-timeout>
     </session-config>
     <welcome-file-list>
-        <welcome-file>/pages</welcome-file>
         <welcome-file>index.jsp</welcome-file>
+        <welcome-file>/pages</welcome-file>
     </welcome-file-list>
+    <security-role>
+        <description>administrator</description>
+        <role-name>admin</role-name>
+    </security-role>
+    <security-role>
+        <description>users</description>
+        <role-name>user</role-name>
+    </security-role>
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Protected Area</web-resource-name>
+            <url-pattern>/admin/*</url-pattern>
+            <url-pattern>/administrators/*</url-pattern>
+        </web-resource-collection>
+        <auth-constraint>
+            <role-name>admin</role-name>
+        </auth-constraint>
+    </security-constraint>
+    <user-data-constraint>
+        <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+    </user-data-constraint>
+    <login-config>
+        <auth-method>FORM</auth-method>
+        <form-login-config>
+            <form-login-page>/admin/login.jsp</form-login-page>
+            <form-error-page>/admin/login_error.jsp</form-error-page>
+        </form-login-config>
+    </login-config>
 </web-app>
