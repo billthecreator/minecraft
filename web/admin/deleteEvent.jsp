@@ -29,6 +29,8 @@
                         </div>
                     </div>
                     <form action="<c:url value="/administrators/processDeletion"/>" method="post">
+                        <input hidden name="id" value="${event.getId()}">
+                        <input class="button" type="submit" value="Delete">
                     </form>
                 </div>
             </div>

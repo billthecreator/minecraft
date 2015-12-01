@@ -7,7 +7,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <%@include file="/includes/header.jsp" %>
+    <%@include file="/includes/header.jsp" %>  
     <body>
         <section>
             <div class="container">
@@ -15,28 +15,26 @@
                 <div class="torso">
                     <h2>Admin Dashboard</h2>
                     <form action="<c:url value="/administrators/addEvent"/>" method="post">
-                        <table>
+                        <table class="event_maker">
                             <tr>
-                                <td>Title</td>
-                                <td><input name="event_title"></td>
+                                <td><input class="textField" name="event_title" placeholder="Post Title"></td>
                             </tr>
                             <tr>
-                                <td>Description</td>
-                                <td><textarea name="event_desc"></textarea></td>
+                                <td>
+                                    <textarea class="textField" name="event_desc" placeholder="Description" style="resize: none; overflow-y: hidden; height: 95px;"></textarea>
+                                </td>
                             </tr>
                             <tr>
-                                <td>Image URL</td>
-                                <td><input name="event_featImage"></td>
+                                <td><input class="textField" name="event_featImage" placeholder="URL to image"></td>
                             </tr>
                             <tr>
-                                <td></td>
-                                <td><input type="submit" value="Add"></td>
+                                <td><input class="button" type="submit" value="Add"></td>
                             </tr>
                         </table>
                     </form>
                 </div>
             </div>
-        <%@include file="/includes/footer.jsp" %>
+<%@include file="/includes/footer.jsp" %>
     </section>
     </body>
 </html>

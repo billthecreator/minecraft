@@ -8,9 +8,8 @@ package controllers;
 import business.Event;
 import data.EventDB;
 import java.io.IOException;
-import java.io.PrintWriter;
-import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,6 +20,7 @@ import javax.servlet.http.HttpSession;
  *
  * @author William Reithmeyer
  */
+
 public class administrators extends HttpServlet {
     HttpSession session;  
     @Override
@@ -36,7 +36,6 @@ public class administrators extends HttpServlet {
             url = "/admin/logout.jsp";
         } else if (requestURI.endsWith("/deleteEvent")) {
             url = deleteEvent(request, response);
-            ;
         } else if (requestURI.endsWith("/pictures")) {
             url = "/pictures.jsp";
         } 
@@ -51,12 +50,18 @@ public class administrators extends HttpServlet {
             HttpServletResponse response)
             throws IOException, ServletException {
 
+        
         session = request.getSession();
         String requestURI = request.getRequestURI();
-        String url = "/adminindex.jsp";
+        String url = "/admin/index.jsp";
         if (requestURI.endsWith("/addEvent")) {
             url = addEvent(request, response);
+        } else if (requestURI.endsWith("/processDeletion")) {
+            url = processDeletion(request, response);
         }
+
+        List<Event> events = EventDB.reverseEvents();
+        session.setAttribute("events", events);
         
         getServletContext()
                 .getRequestDispatcher(url)
@@ -81,9 +86,15 @@ public class administrators extends HttpServlet {
         event.setTitle(title);
         event.setFeaturingImage("");
         
-        EventDB.insert(event);
+        if(title.length() == 0 || description.length() == 0){
+            session.setAttribute("event", event);
+            session.setAttribute("error", 1);
+            return "/admin/";
+        } else {
+            EventDB.insert(event);
+            return "/pages/";
+        }
         
-        return "/admin/";
     }
 
     private String deleteEvent(HttpServletRequest request, HttpServletResponse response) {
@@ -94,4 +105,16 @@ public class administrators extends HttpServlet {
         
         return "/admin/deleteEvent.jsp";
     }
+
+    private String processDeletion(HttpServletRequest request, HttpServletResponse response) {
+        int id     = Integer.parseInt(request.getParameter("id"));
+        
+        Event event = EventDB.selectEvent(id);
+        
+        EventDB.delete(event);
+        return "/pages/";
+        
+    }
+
+    
 }

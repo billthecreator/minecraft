@@ -17,15 +17,15 @@ h1 {
   font-weight: 300; }
 
 h2 {
-  font-size: 2.5em;
+  font-size: 2em;
   font-weight: 300; }
 
 h3 {
-  font-size: 2.2em;
+  font-size: 1.95em;
   font-weight: 300; }
 
 h4 {
-  font-size: 2em;
+  font-size: 1.9em;
   font-weight: 400; }
 
 h5 {
@@ -65,7 +65,7 @@ section {
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); }
   .container .head {
     position: relative;
-    height: 250px;
+    height: 300px;
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center; }
@@ -108,18 +108,39 @@ section {
   .container .torso {
     padding: 16px;
     width: calc(100% - 32px); }
-    .container .torso .thumbs {
-      position: relative;
-      display: block;
-      width: 100%; }
-      .container .torso .thumbs img {
-        border: 5px solid black;
-        position: relative;
-        margin: 0 auto; }
-    .container .torso ol {
+    .container .torso .gallery {
+      margin-top: 16px;
+      line-height: 0;
+      -webkit-column-count: 3;
+      -webkit-column-gap: 0px;
+      -moz-column-count: 3;
+      -moz-column-gap: 0px;
+      column-count: 3;
+      column-gap: 0px; }
+      .container .torso .gallery img {
+        width: 100% !important;
+        height: auto !important;
+        padding: 2px 4px; }
+      @media (max-width: 800px) {
+        .container .torso .gallery {
+          -moz-column-count: 2;
+          -webkit-column-count: 2;
+          column-count: 2; } }
+      @media (max-width: 400px) {
+        .container .torso .gallery {
+          -moz-column-count: 1;
+          -webkit-column-count: 1;
+          column-count: 1; } }
+    .container .torso ol, .container .torso ul {
       padding: 16px 48px; }
-      .container .torso ol li {
+      .container .torso ol li, .container .torso ul li {
         line-height: 1.5em; }
+    .container .torso .iMed {
+      display: block;
+      position: relative;
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto; }
 
 .foot {
   font-size: .9em; }
@@ -166,5 +187,41 @@ section {
         .event .event_footer .event_editor a, .event .event_footer .event_editor a:visited, .event .event_footer .event_editor a:hover, .event .event_footer .event_editor a:active {
           text-decoration: none;
           color: rgba(0, 0, 0, 0.87); }
+
+.event_maker, .login, .form {
+  width: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.15); }
+  .event_maker td, .login td, .form td {
+    padding: 0 16px;
+    width: calc(100% - (16px*2));
+    background-color: transparent; }
+  .event_maker .textField, .login .textField, .form .textField {
+    width: 100%;
+    min-width: 200px;
+    max-width: 400px;
+    padding: 8px 4px;
+    border-width: 0 0 1px 0;
+    border-color: rgba(0, 0, 0, 0.3);
+    display: block;
+    margin: 16px 0;
+    height: 20px; }
+    .event_maker .textField:focus, .login .textField:focus, .form .textField:focus {
+      outline: none; }
+  .event_maker textarea, .login textarea, .form textarea {
+    resize: none;
+    max-width: 800px;
+    font-family: "Roboto";
+    height: 20px;
+    padding: 8px 4px; }
+  .event_maker input[type="submit"], .login input[type="submit"], .form input[type="submit"] {
+    border: none;
+    min-width: 88px;
+    margin: 16px 0; }
+  .event_maker input[type="file"], .login input[type="file"], .form input[type="file"] {
+    border: none;
+    margin: 16px 0; }
+
+.form {
+  margin-top: 16px; }
 
 /*# sourceMappingURL=styles.css.map */

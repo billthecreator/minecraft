@@ -14,13 +14,13 @@
                 <%@include file="includes/banner.jsp" %>
                 <div class="torso">
                     <h2>Pictures</h2>
+                    <div class="gallery">
                     <c:forEach var="item" items="${pictures}">
-                        <div class="thumbs">
                             <a target="_blank" href="/minecraft/pictures/${item}">
                                 <img src="/minecraft/pictures/thumbs/${item}"/>
                             </a>
-                        </div>
                     </c:forEach>
+                    </div>
                 </div>
             </div>
         <%@include file="includes/footer.jsp" %>

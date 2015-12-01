@@ -60,7 +60,7 @@
                       <li>Malicious actions toward members’ plots are prohibited.</li>
                     </ol>
                     
-                    <b><i><center>These rules are subject to change at any time with or without notice, please check back frequently for updates.</b></i></center>
+                    <b><i><center>These rules are subject to change at any time with or without notice, please check back frequently for updates.</center></i></b>
                 </div>
             </div>
         <%@include file="includes/footer.jsp" %>

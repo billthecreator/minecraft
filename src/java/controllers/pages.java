@@ -22,6 +22,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,6 +32,7 @@ import org.imgscalr.Scalr;
  *
  * @author William Reithmeyer
  */
+@WebServlet(name = "pages",urlPatterns = {"/pages"})
 public class pages extends HttpServlet {
 
     
@@ -63,6 +65,8 @@ public class pages extends HttpServlet {
             url = "/map.jsp";
         } else if (requestURI.endsWith("/rules")) {
             url = "/rules.jsp";
+        } else if (requestURI.endsWith("/details")) {
+            url = "/details.jsp";
         } else if (requestURI.endsWith("/pictures")) {
             session.setAttribute("pictures", pictures);
             url = "/pictures.jsp";
@@ -79,9 +83,11 @@ public class pages extends HttpServlet {
             HttpServletResponse response)
             throws IOException, ServletException {
 
+        String ip = getIP();
+        session.setAttribute("ip", ip);
         session = request.getSession();
         String requestURI = request.getRequestURI();
-        String url = "/admin";
+        String url = "/index.jsp";
         if (requestURI.endsWith("/updateProduct")) {
         } else if (requestURI.endsWith("/deleteProduct")) {
         }
@@ -91,7 +97,7 @@ public class pages extends HttpServlet {
                 .forward(request, response);
     }
 
-    private String getIP() {
+    public String getIP() {
         String ip = "error";
         try {
             URL whatismyip = new URL("http://checkip.amazonaws.com");
@@ -104,7 +110,7 @@ public class pages extends HttpServlet {
         }
         
         // debug
-//        ip = "127.0.0.1";
+        ip = "Coming soon";
         
         return ip;
     }
@@ -135,10 +141,8 @@ public class pages extends HttpServlet {
                 
                 sFile = fileEntry.getName();
                 pictureList.add(sFile);
-                System.out.println(sFile);
             }
         }
-                System.out.println("--");
         return pictureList;
     }
 
@@ -146,9 +150,7 @@ public class pages extends HttpServlet {
         for(String item : pictures){
             
             String thumb = getServletContext().getRealPath("/pictures/thumbs/") + "\\" + item;
-            System.out.println(thumb);
             String orig = getServletContext().getRealPath("/pictures/") + "\\" + item;
-            System.out.println(orig);
 
             
             if (!new File(thumb).exists()) {
