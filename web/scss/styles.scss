@@ -183,14 +183,32 @@ section{
     
     .event_header {
         $eHeadPad:16px;       
-        width:calc(100% - (#{$eHeadPad}*2));
-        background-color: rgba(black, .08);
-        padding: $eHeadPad;
+        width:calc(100%);
+        background-color: rgba(124,179,66,1);
+        background-image: url('../images/grass.png');
+        background-size: contain;
+        background-position: right;
         display: inline-block;
-        font-size: 1.2em;
+        font-size: 1.5em;
+        color:white;
         
-        .event_title{display: inline;}
-        .event_date_day{display: inline;float: right}
+        .event_title{
+            text-shadow: 0 0 4px rgba(black,.7);    
+            padding:$eHeadPad;
+            display: inline;
+            float: left; 
+            font-weight: 600;
+        }
+        .event_date_day{
+            float: right;
+            font-weight: 500;
+            padding:$eHeadPad;
+            background-color: rgba(124,179,66,1);
+            background-image: url('../images/sand.jpg');
+            background-size: contain;
+            background-position: right;
+            color:rgba(black, .75);
+        }
     }
     .event_body{
         $eBodPad:16px;       
@@ -203,7 +221,7 @@ section{
         width:calc(100% - (#{$eFootPad}*2));
         padding: $eFootPad;
         display: inline-block;
-        font-size: .9em;
+        font-size: .8em;
         .event_creator{display:inline-block;}
         .event_editor{
             display:inline-block;
